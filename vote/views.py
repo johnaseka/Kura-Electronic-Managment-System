@@ -70,8 +70,6 @@ def signup(request):
         myuser.save()
 
         messages.success(request, "Your Account has been created successfully. \n ")
-        messages.success(request, "We have sent you a confirmation link to your email. \n ")
-        messages.success(request, "Please click on it to activate your account. \n ")
 
         # Welcome Email
 
