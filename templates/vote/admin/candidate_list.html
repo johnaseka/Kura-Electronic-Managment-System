@@ -1,0 +1,36 @@
+{% extends 'vote/admin/admin_base.html' %}
+{% load static %}
+{% block title_block %}
+    <title>Candidate List</title>
+{% endblock %}
+
+{% block body_block %}
+
+    <table class="table-long">
+        <thead>
+            <tr class="table-row">
+                <th class="head-item">REG NUMBER</th>
+                <th class="head-item">NAME</th>
+                <th class="head-item">PHONE NUMBER</th>
+                <th class="head-item">GENDER</th>
+                <th class="head-item">EMAIL</th>
+                <th class="head-item">DEPARTMENT</th>
+                <th class="head-item">VOTES</th>
+{#                <th class="head-item"></th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidate in candidate_list %}
+            <tr class="table-row">
+                <td class="cell">{{ candidate.registration_number }}</td>
+                <td class="cell">{{ candidate.first_name }} {{ candidate.surname }}</td>
+                <td class="cell">{{ candidate.phone_number }}</td>
+                <td class="cell">{{ candidate.gender }}</td>
+                <td class="cell">{{ candidate.email }}</td>
+                <td class="cell">{{ candidate.election }}</td>
+                <td class="cell">{{ candidate.votes }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

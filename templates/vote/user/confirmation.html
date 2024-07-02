@@ -1,0 +1,110 @@
+{% extends 'vote/user/base.html' %}
+{% load static %}
+{% block title_block %}
+    <title>Confirm and Submit</title>
+{% endblock %}
+
+{% block body_block %}
+    <div class="parent2">
+
+        <div class="stepper2">
+            <div class="separator_success"></div>
+            <div class="separator_success"></div>
+            <div class="separator_success"></div>
+            <div class="separator_current"></div>
+        </div>
+
+        <div class="title">
+            Step 2 of 2: Confirmation
+        </div>
+        <div class="stepper">
+            <img class="icon" src="{% static 'images/check.svg' %}" alt="current">
+            <div class="separator"></div>
+            <img class="icon" src="{% static 'images/current.svg' %}" alt="circle">
+        </div>
+
+        <div class="content">
+            Kindly ensure that all details filled below are correct and accurate.
+        </div>
+        <div class="content">
+            Please note that providing false information is a crime punishable by law.
+        </div>
+        <div>
+            <div class="formWrapper">
+                <div class="form">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="fieldWrapper_group">
+                            <div class="fieldWrapper2">
+                                <label for="registration_number">Registration Number</label>
+                                <input class="input" type="text" name="registration_number" maxlength="10" id="registration_number" value="{{voter.registration_number}}" required>
+                            </div>
+
+                            <div class="spacer"></div>
+
+                            <div class="fieldWrapper2">
+                                <label for="first_name">First Name</label>
+                                <input class="input" type="text" name="first_name" maxlength="254" id="first_name" value="{{voter.first_name}}" required>
+                            </div>
+                        </div>
+
+                        <div class="fieldWrapper_group">
+                            <div class="fieldWrapper2">
+                                <label for="election">Department</label>
+                                <select class="input" name="election" id="election" required>
+                                    <option value="">------SELECT YOUR DEPARTMENT------</option>
+                                    {% for election in elections %}
+                                        <option value="{{ election.id }}">{{ election.election_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="spacer"></div>
+
+                            <div class="fieldWrapper2">
+                                <label for="surname">Surname</label>
+                                <input class="input" type="text" name="surname" maxlength="254" id="surname" value="{{voter.surname}}" required>
+                            </div>
+                        </div>
+
+                        <div class="fieldWrapper_group">
+                            <div class="fieldWrapper2">
+                                <label for="phone_number">Phone Number</label>
+                                <input class="input" type="text" name="phone_number" maxlength="10" id="phone_number" value="{{voter.phone_number}}" required>
+                            </div>
+
+                            <div class="spacer"></div>
+
+                            <div class="fieldWrapper2">
+                                <label for="gender">Gender</label>
+                                <select class="input" name="gender" id="gender" required>
+                                    <option value="">------SELECT YOUR DEPARTMENT------</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+                <div class="button-parent">
+                    <div class="button-group2">
+                        <a class="submit" href={% url 'vote:bio' %}>BACK</a>
+                        <input id="submit2" type="submit" value="SUBMIT DETAILS"/>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src)
+            }
+        };
+    </script>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'vote/user/base.html' %}
+{% load static %}
+{% block title_block %}
+    <title>Update Details</title>
+{% endblock %}
+
+{% block body_block %}
+    <div class="parent2">
+        <div class="title2">
+            Update Details
+        </div>
+
+        <div class="content2">
+            <div>
+                Kindly ensure that all details filled below are correct and accurate.
+            </div>
+        </div>
+        <div class="content2">
+            <div>
+                Some of the fields cannot be updated here. For those kindly contact the admin
+            </div>
+        </div>
+        <div class="formWrapper">
+            <div class="form">
+                <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="fieldWrapper_group">
+                        <div class="fieldWrapper2">
+                            <label for="registration_number">Registration Number</label>
+                            <input class="input" type="text" name="registration_number" maxlength="10" id="registration_number" value="{{voter.registration_number}}" readonly>
+                        </div>
+
+                        <div class="spacer"></div>
+
+                        <div class="fieldWrapper2">
+                            <label for="first_name">First Name</label>
+                            <input class="input" type="text" name="first_name" maxlength="254" id="first_name" value="{{voter.first_name}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="fieldWrapper_group">
+                        <div class="fieldWrapper2">
+                            <label for="election">Department</label>
+                            <input class="input" type="text" name="election" maxlength="254" id="election" value="{{voter.election}}" readonly>
+                        </div>
+
+                        <div class="spacer"></div>
+
+                        <div class="fieldWrapper2">
+                            <label for="last_name">Last Name</label>
+                            <input class="input" type="text" name="last_name" maxlength="254" id="last_name" value="{{voter.surname}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="fieldWrapper_group">
+                        <div class="fieldWrapper2">
+                            <label for="phone_number">Phone Number</label>
+                            <input class="input" type="text" name="phone_number" maxlength="10" id="phone_number" value="{{voter.phone_number}}" required>
+                        </div>
+
+                        <div class="spacer"></div>
+
+                        <div class="fieldWrapper2">
+                            <label for="gender">Gender</label>
+                            <input class="input" type="text" name="gender" maxlength="10" id="gender" value="{{voter.gender}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="fieldWrapper_group">
+                        <div class="fieldWrapper2">
+                            <label for="email">Email Address</label>
+                            <input class="input" type="text" name="email" id="email" value="{{voter.email}}" required>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+            <div class="button-parent">
+                <div class="button-group2">
+                    <a class="submit" href={% url 'vote:index' %}>BACK</a>
+                    <input id="submit2" type="submit" value="SUBMIT DETAILS"/>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+
+{% endblock %}
+
